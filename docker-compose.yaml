@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  pgdb:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+      - data:/var/lib/postgresql/data
+    expose:
+      - 5432:5432
+
+  fastapi:
+    build: .
+    command: uvicorn main:app --reload --host 0.0.0.0
+    volumes:
+      - .:/auth
+    ports:
+      - "8001:8000"
+    depends_on:
+      - pgdb
+  redis:
+    image: redis:latest
+    expose:
+      - "6379:6379"
+    depends_on:
+      - pgdb
+volumes:
+  data:

@@ -1,16 +1,33 @@
-# This is a sample Python script.
+import ssl
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from fastapi import FastAPI
+from endpoints.users_crud import router
+from endpoints.table import table_router
+from endpoints.mailverification import mail
+from email.message import EmailMessage
+import smtplib
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+app = FastAPI()
 
+app.include_router(mail)
+app.include_router(router)
+app.include_router(table_router)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+send_from = 'andriyanworking@gmail.com'
+passw = 'kdfn oztg qbmu dgoa'
+send_to = 'nalsher228@gmail.com'
+subj = 'Hello'
+body = """Hello there"""
+email = EmailMessage()
+email['From'] = send_from
+email['To'] = send_to
+email['Subject'] = subj
+email.set_content(body)
+cont = ssl.create_default_context()
+@app.get("/get_info")
+async def func():
+    print('working')
+    with smtplib.SMTP_SSL('smtp.gmail.com',465,context=cont) as serv:
+        serv.login(send_from,passw)
+        serv.sendmail(send_from,send_to,'text')
