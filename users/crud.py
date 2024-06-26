@@ -16,9 +16,13 @@ async def users_add(sesion:AsyncSession,model:dict):
         await sess.commit()
         return new_user
 
-async def users_get(session:AsyncSession):
+async def users_get(session:AsyncSession,model:dict):
     async with session as sess:
-        us = select(users)
+        us = select(users).where(users.login == model.login)
         res = await sess.execute(us)
-        for user_obj in res.scalars():
-            print("Obj-name - " + user_obj.name + "\nObj-Token - " + user_obj.token + "\nObj-UUID - ",user_obj.uuid)
+        obj = res.scalars_one()
+        if obj.is_active == True:
+            print('True')
+        else:
+            print('False')
+

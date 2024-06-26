@@ -27,4 +27,17 @@ async def users_check(session:AsyncSession,id:dict):
         except:
             return 'This account already verificated or not exist'
 
+async def user_give_jwt(session:AsyncSession,login:str,password:str):
+    async with session as sess:
+        query = select(users).where(users.login == login,users.password == password)
+        exec = await sess.execute(query)
+        result = exec.scalar_one()
+        return result.token
+
+async def user_get(session:AsyncSession,login:str):
+    async with session as sess:
+        query = select(users).where(users.login == login)
+        exec = await sess.execute(query)
+        result = exec.scalar_one()
+        return result.info
 

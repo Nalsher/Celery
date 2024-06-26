@@ -11,6 +11,14 @@ async def jwt_create(model):
     print(tok)
     return tok
 
+async def jwt_check(token):
+    tok = jwt.decode(token,key=secret_key,algorithms="HS256")
+    time = datetime.datetime.strptime(tok.get("exp_time"),"%Y-%m-%d")
+    if datetime.datetime.now() > time:
+        return False
+    else:
+        return True
+
 async def emailjwt_create(model):
     print('START HERE IIIIIIIIIIIIIIII',model.uuid,'END HERE IIIIIIIIIIIIIIIIIII')
     payload = {"uuid":str(model.uuid)}
