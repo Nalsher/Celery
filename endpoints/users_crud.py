@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends, Header
+from fastapi import APIRouter, HTTPException, Depends, Header, Cookie, Response
 from pydantic import BaseModel
 from users.crud import users_add,users_get
 from db.dbengine import get_session
@@ -38,10 +38,11 @@ async def create_user(model:Model,session:AsyncSession = Depends(get_session)):
 
 
 @router.post("/auth")
-async def authenticate(model:Auth,session:AsyncSession = Depends(get_session)):
+async def authenticate(response: Response,model:Auth,session:AsyncSession = Depends(get_session)):
     try:
         jwt = await user_give_jwt(login=model.login,password=model.password,session=session)
-        return {"token":jwt}
+        response.set_cookie(key="jwt",value=str(jwt))
+        return {"Success":"Your jwt token now in your cookie-storage"}
     except:
         return {"Error":"Invalid login or password"}
 

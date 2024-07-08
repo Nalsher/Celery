@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from endpoints.users_crud import router
 from endpoints.table import table_router
 from endpoints.mailverification import mail
-from db.dbtables import create_table
 
 
 app = FastAPI()
