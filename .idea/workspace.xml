@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b62e871b-a5e9-4075-835b-d426d38fde2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/users/Dependencies.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/UserRepository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/UserService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/endpoints/mailverification.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoints/mailverification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/endpoints/users_crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/endpoints/users_crud.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/crud.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/jt/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/jt/tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/users.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +93,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5b207ade9991-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.17890.14" />
+        <option value="bundled-python-sdk-98f27166c754-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.21829.153" />
       </set>
     </attachedChunks>
   </component>
